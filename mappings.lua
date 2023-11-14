@@ -8,16 +8,22 @@ return {
   n = {
     -- second key is the lefthand side of the map
 
-    -- navigate buffer tabs with `H` and `L`
-    -- L = {
-    --   function() require("astronvim.utils.buffer").nav(vim.v.count > 0 and vim.v.count or 1) end,
-    --   desc = "Next buffer",
-    -- },
-    -- H = {
-    --   function() require("astronvim.utils.buffer").nav(-(vim.v.count > 0 and vim.v.count or 1)) end,
-    --   desc = "Previous buffer",
-    -- },
+    ["<S-L>"] = {
+      function() require("astronvim.utils.buffer").nav(vim.v.count > 0 and vim.v.count or 1) end,
+      desc = "Next buffer",
+    },
+    ["<S-H>"] = {
+      function() require("astronvim.utils.buffer").nav(-(vim.v.count > 0 and vim.v.count or 1)) end,
+      desc = "Previous buffer",
+    },
 
+    ["<C-Left>"] = false,
+    ["<C-q>"] = false,
+    ["<C-Right>"] = false,
+
+    ["<C-Left>"]  = {"b"},
+    ["<C-Right>"] = {"e"},
+    ["<C-V>"]     = {'"+gP'},
     -- mappings seen under group name "Buffer"
     ["<leader>bD"] = {
       function()
@@ -32,6 +38,12 @@ return {
     ["<leader>b"] = { name = "Buffers" },
     -- quick save
     -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
+  },
+  i = {
+    ["<C-V>"] = {'<ESC>"+pA'},
+  },
+  v = {
+    ["<C-C>"] = {'"+y'},
   },
   t = {
     -- setting a mapping to false will disable it
