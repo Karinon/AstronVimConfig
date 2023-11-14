@@ -21,9 +21,13 @@ return {
     ["<C-q>"] = false,
     ["<C-Right>"] = false,
 
-    ["<C-Left>"]  = {"b"},
-    ["<C-Right>"] = {"e"},
-    ["<C-V>"]     = {'"+gP'},
+    ["<C-s>"] = { ":w!<cr>", desc = "Save File" }, -- change description but the same command
+    ["<C-z>"] = { ":u<cr>", desc = "Undo" },
+    ["<C-a>"] = { "ggVG", desc = "Select All" },
+
+    ["<C-Left>"]  = {"b", desc = "jump one word back"},
+    ["<C-Right>"] = {"e", desc = "jump one word forward"},
+    ["<C-V>"] = {'"+gP', desc = "paste from OS clipboard"},
     -- mappings seen under group name "Buffer"
     ["<leader>bD"] = {
       function()
@@ -36,17 +40,17 @@ return {
     -- tables with the `name` key will be registered with which-key if it's installed
     -- this is useful for naming menus
     ["<leader>b"] = { name = "Buffers" },
-    -- quick save
-    -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
+    ["<C-t>"] = {":ToggleTerm direction=float<CR>"}
   },
   i = {
-    ["<C-V>"] = {'<ESC>"+pA'},
+    ["<C-V>"] = {'<ESC>"+pA', desc = "paste from OS clipboard"},
   },
   v = {
-    ["<C-C>"] = {'"+y'},
+    ["<C-C>"] = {'"+y', desc = "copy to OS clipboard"},
   },
   t = {
     -- setting a mapping to false will disable it
     -- ["<esc>"] = false,
+    ["<C-t>"] = {"<C-d>"}
   },
 }
