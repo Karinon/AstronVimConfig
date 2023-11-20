@@ -1,22 +1,8 @@
---local condition = require "astronvim.utils.status.condition"
-
 return {
   {
     "rebelot/heirline.nvim",
-    --  attributes = {
-    --    mode = { bold = true },
-    --  },
-    --  icon_highlights = {
-    --    file_icon = {
-    --      statusline = false,
-    --    },
-    --  },
-    --},
     opts = function(_, opts)
       local status = require "astronvim.utils.status"
-      --  opts.separators = {
-      -- left = { "", "█ " }, -- separator for the left side of the statusline
-      --  },
       opts.statusline = {
         -- default highlight for the entire statusline
         hl = { fg = "fg", bg = "bg" },
@@ -53,14 +39,6 @@ return {
           hl = { fg = "#555555", bg = "file_bg" },
           surround = { separator = "none" },
         },
-        --status.component.builder {
-        --  { provider = require("astronvim.utils").get_icon "File" },
-        --  hl = { fg = "#555555", bg = "file_bg" },
-        --  padding = { right = 1 },
-        --  -- define the surrounding separator and colors to be used inside of the component
-        --  -- and the color to the right of the separated out section
-        --  surround = { separator = "none" },
-        --},
         -- add a section for the currently opened file information
         {
           status.component.separated_path {
@@ -95,24 +73,6 @@ return {
         status.component.diagnostics { surround = { separator = "right" } },
         status.component.treesitter(),
         status.component.signcolumn(),
-        --{
-        --  status.component.builder {
-        --    { provider = require("astronvim.utils").get_icon "Search" },
-        --    -- add padding after icon
-        --    padding = { right = 1 },
-        --    -- set the icon foreground
-        --    hl = { fg = "bg" },
-        --    -- use the right separator and define the background color
-        --    surround = { separator = "left", color = { main = "nav_icon_bg" } },
-        --  },
-        --  {
-        --    provider = require("astronvim.utils.status").provider.search_count(),
-
-        --    icon = { kind = "Search", padding = { right = 1 } },
-        --    padding = { left = 1 },
-        --  },
-        --  condition = condition.is_hlsearch,
-        --},
         --
         -- add a component to display LSP clients, disable showing LSP progress, and use the right separator
         --
@@ -129,7 +89,16 @@ return {
           provider = function() return "[" .. string.upper(vim.bo.filetype) .. "]" end,
           hl = { fg = "fg", bold = true },
         },
-
+        {
+          provider = function()
+            local current_env = require("swenv.api").get_current_venv()
+            if current_env ~= nil then current_env = current_env.name end
+            return current_env
+          end,
+          padding = { left = 1, right = 1 },
+          condition = function() return string.upper(vim.bo.filetype) == "PYTHON" end,
+          hl = { padding = { right = 1, left = 1 } },
+        },
         { -- make nav section with icon border
           -- define a custom component with just a file icon
           status.component.builder {

@@ -26,6 +26,7 @@ return {
     ["<C-Right>"] = { "e", desc = "jump one word forward" },
     ["<C-V>"] = { '"+gP', desc = "paste from OS clipboard" },
     -- mappings seen under group name "Buffer"
+    ["<leader>fp"] = { function () require("swenv.api").pick_venv() end, desc = "Pick python env" },
     ["<leader>bD"] = {
       function()
         require("astronvim.utils.status").heirline.buffer_picker(
