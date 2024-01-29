@@ -18,7 +18,8 @@ return {
   },
 
   -- Set colorscheme to use
-  colorscheme = "astrodark",
+  --colorscheme = "astrodark",
+  colorscheme = "catppuccin",
 
   -- Diagnostics configuration (for vim.diagnostics.config({...})) when diagnostics are on
   diagnostics = {
@@ -63,12 +64,19 @@ return {
         disabled_plugins = { "tohtml", "gzip", "matchit", "zipPlugin", "netrwPlugin", "tarPlugin" },
       },
     },
+    { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
+    { "Exafunction/codeium.nvim", name = "codeium", priority = 1000 }
   },
 
   -- This function is run last and is a good place to configuring
   -- augroups/autocommands and custom filetypes also this just pure lua so
   -- anything that doesn't fit in the normal config locations above can go here
   polish = function()
+    vim.api.nvim_set_keymap('n', '<C-S-Down>', ':m+<CR>', {noremap = true})
+    vim.api.nvim_set_keymap('n', '<C-S-Up>', ':m-2<CR>', {noremap = true})
+    vim.cmd("noremap! <C-BS> <C-w>")
+    vim.cmd("noremap! <C-h> <C-w>")
+    vim.api.nvim_set_keymap('i', '<C-BS>', '<C-w>', {silent = true})
     --  vim.opt.relativenumber = false
   end,
 }

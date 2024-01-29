@@ -41,6 +41,7 @@ return {
     ["<C-t>"] = { ":ToggleTerm direction=float<CR>" },
   },
   i = {
+
     ["<C-V>"] = { '<ESC>"+pA', desc = "paste from OS clipboard" },
     ["<C-s>"] = { "<ESC>:w!<cr>", desc = "Save File" }, -- change description but the same command
   },
