@@ -14,6 +14,14 @@ return {
       function() require("astronvim.utils.buffer").nav(-(vim.v.count > 0 and vim.v.count or 1)) end,
       desc = "Previous buffer",
     },
+    ["gb"] = {
+      function() require("astronvim.utils.buffer").nav(vim.v.count > 0 and vim.v.count or 1) end,
+      desc = "Next buffer",
+    },
+    ["gB"] = {
+      function() require("astronvim.utils.buffer").nav(-(vim.v.count > 0 and vim.v.count or 1)) end,
+      desc = "Previous buffer",
+    },
     --["<C-Left>"] = false,
     --["<C-Right>"] = false,
     ["<C-q>"] = false,
@@ -26,7 +34,7 @@ return {
     ["<C-Right>"] = { "e", desc = "jump one word forward" },
     ["<C-V>"] = { '"+gP', desc = "paste from OS clipboard" },
     -- mappings seen under group name "Buffer"
-    ["<leader>fp"] = { function () require("swenv.api").pick_venv() end, desc = "Pick python env" },
+    ["<leader>fp"] = { function() require("swenv.api").pick_venv() end, desc = "Pick python env" },
     ["<leader>bD"] = {
       function()
         require("astronvim.utils.status").heirline.buffer_picker(
