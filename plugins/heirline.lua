@@ -36,8 +36,12 @@ return {
           filetype = false,
           filename = false,
           file_modified = false,
+          file_icon = {
+            hl = { fg = "#5599ff" },
+          },
           hl = { fg = "#555555", bg = "file_bg" },
           surround = { separator = "none" },
+          padding = { left = 1, right = 0 },
         },
         -- add a section for the currently opened file information
         {
@@ -49,7 +53,7 @@ return {
             separator = "  ",
             hl = { fg = "#555555", bg = "file_bg" },
             suffix = true,
-            padding = { left = 0, right = 0 },
+            padding = { left = 1, right = 0 },
             surround = { separator = "none", color = { main = "nav_icon_bg", left = "file_info_bg" } },
           },
           status.component.file_info {
